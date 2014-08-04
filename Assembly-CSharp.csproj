@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MagicTileSet.cs" />
+     <Compile Include="Assets\Tile.cs" />
      <Compile Include="Assets\TileMap7.cs" />
      <Compile Include="Assets\TileMapMouse7.cs" />
   </ItemGroup>
