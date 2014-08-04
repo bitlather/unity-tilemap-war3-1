@@ -50,6 +50,7 @@
      <Compile Include="Assets\Tile.cs" />
      <Compile Include="Assets\TileMap7.cs" />
      <Compile Include="Assets\TileMapMouse7.cs" />
+     <Compile Include="Assets\TileMeshData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

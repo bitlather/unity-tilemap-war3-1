@@ -26,4 +26,9 @@ public class MagicTileSet {
 			}
 		}
 	}
+
+	public Tile GetTile(){
+		// Always return top left tile for now; eventually take 9 tiles and determine what to use
+		return this.tiles[0,0];
+	}
 }
