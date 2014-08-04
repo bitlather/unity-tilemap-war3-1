@@ -49,7 +49,20 @@ public class TileMap7 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		MagicTileSet magic_tile_set = LoadMagicTile();
 		BuildMesh();
+	}
+
+	public MagicTileSet magic_tile_set;
+
+	MagicTileSet LoadMagicTile(){
+		Texture2D texture = (Texture2D)Resources.Load("war3-grass");
+
+		if(texture == null){
+			Debug.LogError("NULL TEXTURE AT RESOURCES.LOAD()");
+		}
+
+		return new MagicTileSet(texture);
 	}
 
 	void BuildTexture(){
