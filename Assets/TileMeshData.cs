@@ -27,9 +27,17 @@ public class TileMeshData {
 			}
 		}
 
-		for(int z=0; z < 5; z++){
-			for(int x=0; x < 5; x++){
+		// Bottom left patch
+		for(int z=0; z < 3; z++){
+			for(int x=0; x < 3; x++){
 				this.tiles_grass[x,z] = true;
+			}
+		}
+
+		// 3x3 square
+		for(int z=5;z<8;z++){
+			for(int x=1;x<4;x++){
+				this.tiles_grass[x,z] = true;	
 			}
 		}
 
@@ -61,10 +69,10 @@ public class TileMeshData {
 		this.tiles_rendered = new Tile[this.tiles_x, this.tiles_z];
 		Tile blank = new Tile(Color.red);
 
-		for(int z=0; z < this.tiles_z; z++){
-			for(int x=0; x < this.tiles_x; x++){
+		for(uint z=0; z < this.tiles_z; z++){
+			for(uint x=0; x < this.tiles_x; x++){
 				if(this.tiles_grass[x,z]){
-					this.tiles_rendered[x,z] = magic_tile_set.GetTile();
+					this.tiles_rendered[x,z] = magic_tile_set.GetTile(this.tiles_grass, x, z);
 				} else {
 					this.tiles_rendered[x,z] = blank;
 				}
