@@ -49,7 +49,6 @@ public class TileMap7 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		MagicTileSet magic_tile_set = LoadMagicTile();
 		BuildMesh();
 	}
 
@@ -64,133 +63,11 @@ public class TileMap7 : MonoBehaviour {
 
 		return new MagicTileSet(texture);
 	}
-
-	void BuildTexture(){
-		int num_tiles_per_row = this.terrain_tiles.width / this.tile_resolution;
-		int num_rows = this.terrain_tiles.height / this.tile_resolution;
-
-		int 
-			texture_width = this.size_x * this.tile_resolution,
-			texture_height = this.size_z * this.tile_resolution;
-		Texture2D texture = new Texture2D(texture_width, texture_height);
-
-		Color[][] tiles = ChopUpTiles ();
-
-		for(int y=0; y<size_z; y++){
-			for(int x=0; x<size_x; x++){
-				int terrain_tile_offset_x = Random.Range (0, num_tiles_per_row) * tile_resolution;
-				// Part 7: In /Textures, click civ_map_textures7.png and change type to advanced, then check Read/Write enabled in order to gain access to GetPixels()
-				//Color[] p = terrain_tiles.GetPixels (terrain_tile_offset_x, 0, tile_resolution, tile_resolution); // hugely inefficient
-				Color[] p = tiles[Random.Range (0,4)];
-				texture.SetPixels(x*tile_resolution, y*tile_resolution, tile_resolution, tile_resolution, p);
-			}
-		}
-
-		// Do not blend between pixels
-		// Normally, you probably don't want to do this
-		texture.filterMode = FilterMode.Point;
-		// In Part 7 we temporarily change this to bilinear so it's less harshly pixelated
-		//    texture.filterMode = FilterMode.Bilinear;
-
-		texture.wrapMode = TextureWrapMode.Clamp;
-
-		// Apply pixel changes to texture
-		texture.Apply();
-
-		// Put texture onto tilemap
-		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
-		mesh_renderer.sharedMaterials[0].mainTexture = texture;
-
-	}
-	
 	public void BuildMesh(){
-		/* Map
-		 * 0----1----2----3
-		 * |\   |\   |\   |
-		 * | \  | \  | \  |
-		 * |  \ |  \ |  \ |
-		 * |   \|   \|   \|
-		 * 4----5----6----7
-		 * |\   |\   |\   |
-		 * | \  | \  | \  |
-		 * |  \ |  \ |  \ |
-		 * |   \|   \|   \|
-		 * 8----9---10---11
-		 */
-		int num_tiles = size_x * size_z;
-		int num_triangles = num_tiles * 2;
-
-		int vsize_x = size_x + 1; // Number of horizontal vertices. To draw one tile wide, you need two vertices - so we add one.
-		int vsize_z = size_z + 1;
-		int num_vertices = vsize_x * vsize_z;
-
-		// Generate the mesh data
-		Vector3[] vertices = new Vector3[num_vertices];
-		Vector3[] normals = new Vector3[num_vertices];   // one per vertex
-		Vector2[] uv = new Vector2[num_vertices];        // one per vertex; value from 0 to 1. Represents where in texture to apply (just one texture for entire map right now). 0 = left most, 1 = right most.
-
-		int[] triangles = new int[num_triangles * 3];     // 2 triangles * 3		 vertices
-
-		// Populate vertices, normals, and uv
-		int x, z, index;
-		for (z = 0; z < vsize_z; z++) {
-			for (x = 0; x < vsize_x; x++) {
-				index = z * vsize_x + x;
-				vertices[index] = new Vector3( 
-					x * tile_size, 
-					0, //Random.Range (-1f, 1f),// <-- range creates a neat choppy water effect
-					z * tile_size);
-				normals[index] = Vector3.up;
-				// NOTE! In part 6, we changed from vsize_x to size_x and vsize_z to size_z, because in final loop, if z=100, then vsize_z = 101.
-				uv[index] = new Vector2((float)x / size_x, (float)z / size_z);
-			}
-		}
-
-		// Populate triangles
-		for (z = 0; z < size_z; z++) {
-			for (x = 0; x < size_x; x++) {
-				/* First tile
-				 * -----------------------------
-				 * First triangle
-				 * triangles[0] = 0;
-				 * triangles[1] = vsize_x + 0;
-				 * triangles[2] = vsize_x + 1;
-				 * 
-				 * Second triangle
-				 * triangles[3] = 0;
-				 * triangles[4] = vsize_x + 1;
-				 * triangles[5] = 1;
-				 */
-				int square_index = z * size_x + x;
-				int triangle_offset = square_index * 6;
-
-				// First triangle
-				triangles[triangle_offset + 0] = z * vsize_x + x + 0;
-				triangles[triangle_offset + 1] = z * vsize_x + x + vsize_x + 0;
-				triangles[triangle_offset + 2] = z * vsize_x + x + vsize_x + 1;
-
-				// Second triangle
-				triangles[triangle_offset + 3] = z * vsize_x + x + 0;
-				triangles[triangle_offset + 4] = z * vsize_x + x + vsize_x + 1;
-				triangles[triangle_offset + 5] = z * vsize_x + x + 1;
-			}
-		}
-
-		// Create a new mesh and populate with the data
-		Mesh mesh = new Mesh ();
-		mesh.vertices = vertices;
-		mesh.triangles = triangles;
-		mesh.normals = normals;
-		mesh.uv = uv;
-		
-		//Assign our mess to filter/renderer/collider
-		MeshFilter mesh_filter = GetComponent<MeshFilter> ();
-		MeshRenderer mesh_renderer = GetComponent<MeshRenderer> ();
-		MeshCollider mesh_collider = GetComponent<MeshCollider> ();
-		
-		mesh_filter.mesh = mesh;
-		mesh_collider.sharedMesh = mesh;
-
-		BuildTexture();
+		MagicTileSet magic_tile_set = LoadMagicTile();
+		TileMeshData tile_mesh_data = new TileMeshData(magic_tile_set);
+		tile_mesh_data.BuildMesh(GetComponent<MeshFilter> (),
+			GetComponent<MeshRenderer> (), //this one doesnt seem to be used
+			GetComponent<MeshCollider> ());
 	}
 }
