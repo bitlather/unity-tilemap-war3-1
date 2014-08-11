@@ -96,6 +96,50 @@ public class MagicTileSet {
 			}
 		}
 
+
+
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XXX
+			// XXX
+			// -XX
+			return this.tiles[1,0];	
+		}
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT)){
+			// -XX
+			// XXX
+			// XXX
+			return this.tiles[3,2];	
+		}
+		if(bits == 
+			( TOP_BIT | TOP_RIGHT_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XXX
+			// XXX
+			// XX-
+			return this.tiles[2,0];	
+		}
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XX-
+			// XXX
+			// XXX
+			return this.tiles[3,1];	
+		}
+
+
+
+
+
 		// Return appropriate tile
 		if(bits == 
 			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
