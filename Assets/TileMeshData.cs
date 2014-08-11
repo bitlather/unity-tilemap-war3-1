@@ -41,7 +41,7 @@ public class TileMeshData {
 			}
 		}
 
-		// 4x4 square
+		// 2x2 square
 		for(int z=6;z<10;z++){
 			for(int x=2;x<6;x++){
 				this.tiles_grass[x,z] = true;	
@@ -65,6 +65,46 @@ public class TileMeshData {
 				this.tiles_grass[x,z] = true;	
 			}
 		}
+
+		// Plus sign
+		for(int z=6;z<10;z++){
+			for(int x=12;x<20;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+		for(int z=4;z<12;z++){
+			for(int x=14;x<18;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+
+		// X
+		for(int z=14;z<16;z++){
+			for(int x=12;x<14;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+		for(int z=18;z<20;z++){
+			for(int x=12;x<14;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+		for(int z=14;z<16;z++){
+			for(int x=16;x<18;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+		for(int z=18;z<20;z++){
+			for(int x=16;x<18;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+		for(int z=16;z<18;z++){
+			for(int x=14;x<16;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+
 	}
 
 	private void LoadHardcodedElevationMap(){
