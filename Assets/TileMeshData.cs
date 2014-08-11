@@ -28,15 +28,15 @@ public class TileMeshData {
 		}
 
 		// Bottom left patch
-		for(int z=0; z < 3; z++){
-			for(int x=0; x < 3; x++){
+		for(int z=0; z < 4; z++){
+			for(int x=0; x < 4; x++){
 				this.tiles_grass[x,z] = true;
 			}
 		}
 
 		// 3x3 square
-		for(int z=5;z<8;z++){
-			for(int x=1;x<4;x++){
+		for(int z=6;z<10;z++){
+			for(int x=2;x<6;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}

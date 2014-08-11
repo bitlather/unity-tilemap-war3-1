@@ -42,6 +42,7 @@ public class MagicTileSet {
 			bits = 0,
 			map_height = (uint)map.GetLength(1),
 			map_width = (uint)map.GetLength(0);
+
 		// This is left most tile
 		if(x == 0){
 			bits |= TOP_LEFT_BIT | LEFT_BIT | BOTTOM_LEFT_BIT;
@@ -95,7 +96,6 @@ public class MagicTileSet {
 			}
 		}
 
-if(bits != 255){Debug.Log("Not 255: "+bits);}
 		// Return appropriate tile
 		if(bits == 
 			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
@@ -106,7 +106,7 @@ if(bits != 255){Debug.Log("Not 255: "+bits);}
 			// XXX
 			return this.tiles[0,3];	
 		}
-		if(bits==
+		if(bits ==
 			( TOP_BIT | TOP_RIGHT_BIT 
 			| RIGHT_BIT 
 			| 0)){
@@ -116,10 +116,7 @@ if(bits != 255){Debug.Log("Not 255: "+bits);}
 			return this.tiles[0,2];
 		}
 
-
-
-
-		if(bits==
+		if(bits ==
 			( BOTTOM_BIT | BOTTOM_RIGHT_BIT 
 			| RIGHT_BIT 
 			| 0)){
@@ -129,9 +126,20 @@ if(bits != 255){Debug.Log("Not 255: "+bits);}
 			return this.tiles[0,1];
 		}
 
+		if(bits ==
+			( TOP_BIT | TOP_RIGHT_BIT 
+			| RIGHT_BIT
+			| BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XXX
+			// ---
+			// ---
+			return this.tiles[0,0];
+		}
 
 
-		if(bits==
+
+
+		if(bits ==
 			( TOP_BIT | TOP_LEFT_BIT 
 			| LEFT_BIT 
 			| 0)){
@@ -141,9 +149,17 @@ if(bits != 255){Debug.Log("Not 255: "+bits);}
 			return this.tiles[1,3];
 		}
 
+		if(bits ==
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
+			| LEFT_BIT | RIGHT_BIT
+			| 0)){
+			// --X
+			// --X
+			// --X
+			return this.tiles[1,2];
+		}
 
-
-		if(bits==
+		if(bits ==
 			( BOTTOM_BIT | BOTTOM_LEFT_BIT 
 			| LEFT_BIT 
 			| 0)){
@@ -152,6 +168,27 @@ if(bits != 255){Debug.Log("Not 255: "+bits);}
 			// XX-
 			return this.tiles[2,3];
 		}
+
+		if(bits ==
+			( 0 
+			| LEFT_BIT | RIGHT_BIT
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// X--
+			// X--
+			// X--
+			return this.tiles[2,1];
+		}
+
+		if(bits ==
+			( TOP_LEFT_BIT | TOP_BIT 
+			| LEFT_BIT
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT)){
+			// ---
+			// ---
+			// XXX
+			return this.tiles[3,3];
+		}
+
 		// Always return top left tile for now; eventually take 9 tiles and determine what to use
 		return this.tiles[0,3];
 	}
