@@ -34,6 +34,13 @@ public class TileMeshData {
 			}
 		}
 
+		// 1x1 square
+		for(int z=2; z < 4; z++){
+			for(int x=6; x < 8; x++){
+				this.tiles_grass[x,z] = true;
+			}
+		}
+
 		// 4x4 square
 		for(int z=6;z<10;z++){
 			for(int x=2;x<6;x++){

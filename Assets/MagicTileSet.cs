@@ -16,7 +16,6 @@ public class MagicTileSet {
 		BOTTOM_BIT = 64,
 		BOTTOM_RIGHT_BIT = 128;
 
-
 	private Tile[,] tiles;
 
 	public MagicTileSet(Texture2D tileset) {
@@ -99,42 +98,39 @@ public class MagicTileSet {
 
 
 
+
 		if(bits == 
-			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT
-			| LEFT_BIT | RIGHT_BIT 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
+			| LEFT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// !!!
+			// !!!
+			// !!!
+			return this.tiles[1,1];	
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT 
+			| LEFT_BIT 
 			| BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
-			// XXX
-			// XXX
-			// -XX
-			return this.tiles[1,0];	
+			// !!!
+			// !!!
+			// !!!
+			return this.tiles[1,1];	
 		}
+
 		if(bits == 
-			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT
-			| LEFT_BIT | RIGHT_BIT 
-			| BOTTOM_LEFT_BIT | BOTTOM_BIT)){
-			// -XX
-			// XXX
-			// XXX
-			return this.tiles[3,2];	
-		}
-		if(bits == 
-			( TOP_BIT | TOP_RIGHT_BIT
-			| LEFT_BIT | RIGHT_BIT 
+			( TOP_LEFT_BIT 
+			| LEFT_BIT 
 			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
-			// XXX
-			// XXX
-			// XX-
-			return this.tiles[2,0];	
+			// !!!
+			// !!!
+			// !!!
+			return this.tiles[1,1];	
 		}
-		if(bits == 
-			( TOP_LEFT_BIT | TOP_BIT
-			| LEFT_BIT | RIGHT_BIT 
-			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
-			// XX-
-			// XXX
-			// XXX
-			return this.tiles[3,1];	
-		}
+
+
+
 
 
 
@@ -180,8 +176,25 @@ public class MagicTileSet {
 			return this.tiles[0,0];
 		}
 
+		if(bits == 
+			( TOP_BIT | TOP_RIGHT_BIT 
+			| RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XXX
+			// ---
+			// ---
+			return this.tiles[0,0];	
+		}
 
-
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
+			| RIGHT_BIT 
+			| BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XXX
+			// ---
+			// ---
+			return this.tiles[0,0];	
+		}
 
 		if(bits ==
 			( TOP_BIT | TOP_LEFT_BIT 
@@ -201,6 +214,36 @@ public class MagicTileSet {
 			// --X
 			// --X
 			return this.tiles[1,2];
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT)){
+			// --X
+			// --X
+			// --X
+			return this.tiles[1,2];	
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_RIGHT_BIT)){
+			// --X
+			// --X
+			// --X
+			return this.tiles[1,2];	
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XXX
+			// XXX
+			// -XX
+			return this.tiles[1,0];	
 		}
 
 		if(bits ==
@@ -223,6 +266,36 @@ public class MagicTileSet {
 			return this.tiles[2,1];
 		}
 
+		if(bits == 
+			( TOP_LEFT_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// X--
+			// X--
+			// X--
+			return this.tiles[2,1];	
+		}
+
+		if(bits == 
+			( TOP_RIGHT_BIT 
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// X--
+			// X--
+			// X--
+			return this.tiles[2,1];	
+		}
+
+		if(bits == 
+			( TOP_BIT | TOP_RIGHT_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XXX
+			// XXX
+			// XX-
+			return this.tiles[2,0];	
+		}
+
 		if(bits ==
 			( TOP_LEFT_BIT | TOP_BIT 
 			| LEFT_BIT
@@ -232,6 +305,50 @@ public class MagicTileSet {
 			// XXX
 			return this.tiles[3,3];
 		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT
+			| LEFT_BIT
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// ---
+			// ---
+			// XXX
+			return this.tiles[3,3];	
+		}
+
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT
+			| LEFT_BIT
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT)){
+			// ---
+			// ---
+			// XXX
+			return this.tiles[3,3];	
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT)){
+			// -XX
+			// XXX
+			// XXX
+			return this.tiles[3,2];	
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT
+			| LEFT_BIT | RIGHT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XX-
+			// XXX
+			// XXX
+			return this.tiles[3,1];	
+		}
+
+
+Debug.Log("UNACCOUNTED FOR: "+bits);
 
 		// Always return top left tile for now; eventually take 9 tiles and determine what to use
 		return this.tiles[0,3];
