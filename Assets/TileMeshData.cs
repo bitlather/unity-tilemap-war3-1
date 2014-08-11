@@ -34,13 +34,30 @@ public class TileMeshData {
 			}
 		}
 
-		// 3x3 square
+		// 4x4 square
 		for(int z=6;z<10;z++){
 			for(int x=2;x<6;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 
+		// 4x4 square with whole in middle
+		for(int z=12; z<20;z++){
+			for(int x = 2; x<4; x++){
+				this.tiles_grass[x,z] = true;	
+			}
+			for(int x = 8; x<10; x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+		for(int x=2; x<10; x++){
+			for(int z = 12; z<14; z++){
+				this.tiles_grass[x,z] = true;	
+			}
+			for(int z = 18; z<20; z++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
 	}
 
 	private void LoadHardcodedElevationMap(){
