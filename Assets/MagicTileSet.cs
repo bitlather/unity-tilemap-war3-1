@@ -135,6 +135,53 @@ public class MagicTileSet {
 
 
 
+		if(bits == 
+			( TOP_RIGHT_BIT 
+			| LEFT_BIT 
+			| BOTTOM_LEFT_BIT | BOTTOM_BIT)){
+			// ---
+			// X--
+			// XX-
+			return this.tiles[2,3];	
+		}
+
+		if(bits == 
+			( TOP_BIT | TOP_RIGHT_BIT 
+			| RIGHT_BIT 
+			| BOTTOM_LEFT_BIT)){
+			// -XX
+			// --X
+			// ---
+			return this.tiles[0,2];	
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT | TOP_BIT 
+			| LEFT_BIT 
+			| BOTTOM_RIGHT_BIT)){
+			// -XX
+			// --X
+			// ---
+			return this.tiles[1,3];	
+		}
+
+		if(bits == 
+			( TOP_LEFT_BIT 
+			| RIGHT_BIT 
+			| BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
+			// XX-
+			// X--
+			// ---
+			return this.tiles[0,1];	
+		}
+
+
+
+
+
+
+
+
 
 		// Return appropriate tile
 		if(bits == 
