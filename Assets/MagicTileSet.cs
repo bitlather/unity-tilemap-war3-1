@@ -16,7 +16,7 @@ public class MagicTileSet {
 		BOTTOM_BIT = 64,
 		BOTTOM_RIGHT_BIT = 128;
 
-	private Tile[,] tiles;
+	public Tile[,] tiles;
 
 	public MagicTileSet(Texture2D tileset) {
 		this.tiles = new Tile[tiles_wide, tiles_tall];

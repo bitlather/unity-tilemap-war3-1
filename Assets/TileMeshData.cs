@@ -19,13 +19,45 @@ public class TileMeshData {
 	}
 
 	private void LoadHardcodedGrass(){
+		string[] map_data = {
+			"...............",
+			"...............",
+			"...X...........",
+			"...............",
+			"X..XX..........",
+			"X.XXXX.X.X.....",
+			"X.XXXX..X......",
+			"...XX..X.X.....",
+			"X..............",
+			"X.X...XXXX.X.X.",
+			"......X..X.XXX.",
+			"X..XX.X..X.X.X.",
+			"...XX.XXXX.XXX.",
+			"XX.............",
+			"XX............."};
+
 		this.tiles_grass = new bool[this.tiles_x, this.tiles_z];
+
+
 
 		for(int z=0; z < this.tiles_z; z++){
 			for(int x=0; x < this.tiles_x; x++){
 				this.tiles_grass[x,z] = false;
 			}
 		}
+
+/*
+		for(int x=0; x < this.tiles_x/2; x++){
+			string row = map_data[x];
+			for(int z=0; z < this.tiles_z/2; z++){
+				bool tile = ('X' == row[z]);
+				this.tiles_grass[x*2,z*2] = tile;
+				this.tiles_grass[x*2,z*2+1] = tile;
+				this.tiles_grass[x*2+1,z*2] = tile;
+				this.tiles_grass[x*2+1,z*2+1] = tile;
+			}
+		}
+*/
 
 		// Bottom left patch
 		for(int z=0; z < 4; z++){
@@ -34,30 +66,52 @@ public class TileMeshData {
 			}
 		}
 
+		// Left side 1x1 tile
+		for(int z=0; z<2; z++){
+			for(int x=6;x<8;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+
+		// Left side 2x1 tile
+		for(int z=0; z<2; z++){
+			for(int x=10;x<14;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+
+		// Left side 3x1 tile
+		for(int z=0; z<2; z++){
+			for(int x=16;x<22;x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+
+
 		// 1x1 square
-		for(int z=2; z < 4; z++){
-			for(int x=6; x < 8; x++){
+		for(int z=4; z < 6; z++){
+			for(int x=10; x < 12; x++){
 				this.tiles_grass[x,z] = true;
 			}
 		}
 
 		// 2x2 square
 		for(int z=6;z<10;z++){
-			for(int x=2;x<6;x++){
+			for(int x=4;x<8;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 
 		// 4x4 square with whole in middle
 		for(int z=12; z<20;z++){
-			for(int x = 2; x<4; x++){
+			for(int x = 4; x<6; x++){
 				this.tiles_grass[x,z] = true;	
 			}
-			for(int x = 8; x<10; x++){
+			for(int x = 10; x<12; x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
-		for(int x=2; x<10; x++){
+		for(int x=4; x<12; x++){
 			for(int z = 12; z<14; z++){
 				this.tiles_grass[x,z] = true;	
 			}
@@ -66,41 +120,59 @@ public class TileMeshData {
 			}
 		}
 
+		// 3x3 square with whole in middle
+		for(int z=22; z<28;z++){
+			for(int x = 4; x<6; x++){
+				this.tiles_grass[x,z] = true;	
+			}
+			for(int x = 8; x<10; x++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+		for(int x=4; x<12; x++){
+			for(int z = 22; z<24; z++){
+				this.tiles_grass[x,z] = true;	
+			}
+			for(int z = 26; z<28; z++){
+				this.tiles_grass[x,z] = true;	
+			}
+		}
+
 		// Plus sign
 		for(int z=6;z<10;z++){
-			for(int x=12;x<20;x++){
+			for(int x=14;x<22;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 		for(int z=4;z<12;z++){
-			for(int x=14;x<18;x++){
+			for(int x=16;x<20;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 
 		// X
 		for(int z=14;z<16;z++){
-			for(int x=12;x<14;x++){
+			for(int x=14;x<16;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 		for(int z=18;z<20;z++){
-			for(int x=12;x<14;x++){
+			for(int x=14;x<16;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 		for(int z=14;z<16;z++){
-			for(int x=16;x<18;x++){
+			for(int x=18;x<20;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 		for(int z=18;z<20;z++){
-			for(int x=16;x<18;x++){
+			for(int x=18;x<20;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
 		for(int z=16;z<18;z++){
-			for(int x=14;x<16;x++){
+			for(int x=16;x<18;x++){
 				this.tiles_grass[x,z] = true;	
 			}
 		}
