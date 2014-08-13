@@ -6,8 +6,8 @@ public class TileMeshData {
 	private bool[,] tiles_grass;
 	private Tile[,] tiles_rendered;
 	private int 
-		tiles_x = 30,
-		tiles_z = 30,
+		tiles_x = 34,
+		tiles_z = 34,
 		tile_resolution = 16; // one tile is 16 pixels; should be stored elsewhere
 	public float
 		tile_size = 1.0f; // Size in unity units
@@ -20,21 +20,23 @@ public class TileMeshData {
 
 	private void LoadHardcodedGrass(){
 		string[] map_data = {
-			"XX.X.XX.XXX....",
-			"XX.............",
-			"...X...........",
-			"...............",
-			"X..XX..........",
-			"X.XXXX.X.X.....",
-			"X.XXXX..X......",
-			"...XX..X.X.....",
-			"X..............",
-			"X.X...XXXX.X.X.",
-			"......X..X.XXX.",
-			"X..XX.X..X.X.X.",
-			"...XX.XXXX.XXX.",
-			"XX.............",
-			"XX.X.XX.XXX...."};
+			"XX.X.XX.XXX......", // NOTE if this corner is X then it causes bad things
+			"XX...............",
+			".................",
+			".................",
+			"...X.............",
+			".................",
+			"X..XX............",
+			"X.XXXX.X.X.......",
+			"X.XXXX..X........",
+			"...XX..X.X.......",
+			"X................",
+			"X.X...XXXX.X.X...",
+			"......X..X.XXX...",
+			"X..XX.X..X.X.X...",
+			"...XX.XXXX.XXX...",
+			"XX...............",
+			"XX.X.XX.XXX......"};
 
 		this.tiles_grass = new bool[this.tiles_x, this.tiles_z];
 
