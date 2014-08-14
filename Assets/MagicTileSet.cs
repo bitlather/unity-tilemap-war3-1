@@ -129,36 +129,6 @@ Debug.Log(debugging_tile);
 
 
 
-		if(bits == 
-			( TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT 
-			| LEFT_BIT 
-			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
-			// !!!
-			// !!!
-			// !!!
-			return this.tiles[1,1];	
-		}
-
-		if(bits == 
-			( TOP_LEFT_BIT | TOP_BIT 
-			| LEFT_BIT 
-			| BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
-			// !!!
-			// !!!
-			// !!!
-			return this.tiles[1,1];	
-		}
-
-		if(bits == 
-			( TOP_LEFT_BIT 
-			| LEFT_BIT 
-			| BOTTOM_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT)){
-			// !!!
-			// !!!
-			// !!!
-			return this.tiles[1,1];	
-		}
-
 
 
 
