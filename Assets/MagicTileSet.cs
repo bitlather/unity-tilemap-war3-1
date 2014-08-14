@@ -36,16 +36,13 @@ public class MagicTileSet {
 		}
 	}
 
-	public Tile GetTile(bool[,] map, uint x, uint z, bool debug_the_tile){
+	public Tile GetTile(bool[,] map, uint x, uint z){
 		uint
 			bits = 0,
 			map_height = (uint)map.GetLength(1),
 			map_width = (uint)map.GetLength(0),
 			map_max_z = map_height - 1,
 			map_max_x = map_width - 1;
-
-string debugging_tile = "";
-
 
 		// This is left most tile
 		if(x == 0){
@@ -101,9 +98,8 @@ string debugging_tile = "";
 			
 		
 
-
-debugging_tile += "MAGIC TILE BITS: "+bits+"   ";
-
+if(false){ // TILE DEBUGGING
+string debugging_tile = "MAGIC TILE BITS: "+bits+"   ";
 if((bits & TOP_LEFT_BIT) == TOP_LEFT_BIT){
 	debugging_tile += "TOP_LEFT_BIT ";
 }
@@ -128,9 +124,8 @@ if((bits & BOTTOM_BIT) == BOTTOM_BIT){
 if((bits & BOTTOM_RIGHT_BIT) == BOTTOM_RIGHT_BIT){
 	debugging_tile += "BOTTOM_RIGHT_BIT ";
 }
-
-if(debug_the_tile){Debug.Log(debugging_tile);}
-
+Debug.Log(debugging_tile);
+}
 
 
 
@@ -420,7 +415,7 @@ if(debug_the_tile){Debug.Log(debugging_tile);}
 		}
 
 
-//TODO UNCOMMENT FOR NOW; RESTORE LATER Debug.Log("UNACCOUNTED FOR: "+bits);
+		Debug.Log("UNACCOUNTED FOR: "+bits);
 
 		// Always return top left tile for now; eventually take 9 tiles and determine what to use
 		return this.tiles[0,3];

@@ -96,8 +96,7 @@ public class TileMeshData {
 				//	this.tiles_rendered[x,z] = zeroed;
 				//}else
 				if(this.tiles_grass[x,z]){
-					bool debug_the_tile = (x==6&&z==33);
-					this.tiles_rendered[x,z] = magic_tile_set.GetTile(this.tiles_grass, x, z, debug_the_tile);
+					this.tiles_rendered[x,z] = magic_tile_set.GetTile(this.tiles_grass, x, z);
 				} else {
 					this.tiles_rendered[x,z] = blank;
 				}
