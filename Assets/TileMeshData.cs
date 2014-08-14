@@ -20,23 +20,23 @@ public class TileMeshData {
 
 	private void LoadHardcodedGrass(){
 		string[] map_data = {
-			"XX.X.XX.XXX......", // NOTE if this corner is X then it causes bad things
+			"XX.X.XX.XXX.....X", // NOTE if this corner is X then it causes bad things
 			"XX...............",
 			".................",
 			".................",
 			"...X.............",
 			".................",
-			"X..XX............",
-			"X.XXXX.X.X.......",
-			"X.XXXX..X........",
+			"X..XX...........X",
+			"X.XXXX.X.X......X",
+			"X.XXXX..X.......X",
 			"...XX..X.X.......",
-			"X................",
-			"X.X...XXXX.X.X...",
+			"X...............X",
+			"X.X...XXXX.X.X..X",
 			"......X..X.XXX...",
-			"X..XX.X..X.X.X...",
+			"X..XX.X..X.X.X..X",
 			"...XX.XXXX.XXX...",
 			"XX...............",
-			"XX.X.XX.XXX......"};
+			"XX.X.XX.XXX.....X"};
 
 		this.tiles_grass = new bool[this.tiles_x, this.tiles_z];
 
@@ -89,9 +89,9 @@ public class TileMeshData {
 
 		for(uint z=0; z < this.tiles_z; z++){
 			for(uint x=0; x < this.tiles_x; x++){
-				if(x == 0 && z == 0){
-					this.tiles_rendered[x,z] = zeroed;
-				}else
+				//if(x == 0 && z == 0){ // POINT OUT (0,0)
+				//	this.tiles_rendered[x,z] = zeroed;
+				//}else
 				//if(x == 6 && z== 33){
 				//	this.tiles_rendered[x,z] = zeroed;
 				//}else

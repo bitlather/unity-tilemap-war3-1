@@ -49,93 +49,60 @@ string debugging_tile = "";
 
 		// This is left most tile
 		if(x == 0){
-debugging_tile += "A";
-			bits |= LEFT_BIT;
-
-			if(z - 1 >= 0 && map[x,z-1]){
-				bits |= BOTTOM_LEFT_BIT;
-debugging_tile += "1";
-			}
-			if(z + 1< map_height && map[x,z+1]){
-				bits |= TOP_LEFT_BIT;
-debugging_tile += "2";
-			}
-debugging_tile += " ";
+			bits |= BOTTOM_LEFT_BIT | LEFT_BIT | TOP_LEFT_BIT;
 		}
 		// This is bottom most tile
 		if(z == 0){
-			bits |= BOTTOM_BIT;
-
-			if(x-1 >= 0 && map[x-1,z]){
-				bits |= BOTTOM_LEFT_BIT;
-			}
-			if(x+1 < map_width && map[x+1, z]){
-				bits |= BOTTOM_RIGHT_BIT;
-			}
-debugging_tile += "D";
+			bits |= BOTTOM_BIT | BOTTOM_LEFT_BIT | BOTTOM_RIGHT_BIT;
 		}
 
 		// This is top most tile
 		if(z + 1 == map_height){
 			bits |= TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT;
-debugging_tile += "B";
 		}
 		// This is right most tile
-		if(x == map_width){
+		if(x + 1 == map_width){
 			bits |= TOP_RIGHT_BIT | RIGHT_BIT | BOTTOM_RIGHT_BIT;
-debugging_tile += "C";
 		}
 
 		// Handle top bits for every non top row of map
 		if(z+1 < map_height){
-debugging_tile += " E";
 			if(x >= 1 && map[x-1, z+1]){
 				bits |= TOP_LEFT_BIT;
-debugging_tile += "1";
 			}
 			if(map[x, z+1]){
 				bits |= TOP_BIT;
-debugging_tile += "2";
 			}
 			if(x+1 < map_width && map[x+1, z+1]){
 				bits |= TOP_RIGHT_BIT;
-debugging_tile += "3";
 			}
-debugging_tile += " ";
 		}
 
 		// Handle bottom bits for every non bottom row of map
 		if(z > 0){
-debugging_tile += " F";
 			if(x >= 1 && map[x-1, z-1]){
 				bits |= BOTTOM_LEFT_BIT;
-debugging_tile += "1";
 			}
 			if(map[x, z-1]){
 				bits |= BOTTOM_BIT;
-debugging_tile += "2";
 			}
 			if(x+1 < map_width && map[x+1, z-1]){
 				bits |= BOTTOM_RIGHT_BIT;
-debugging_tile += "3";
 			}
-debugging_tile += " ";
 		}
 
 		// Handle side bits
 		if(x > 0 && map[x-1, z]){
 			bits |= LEFT_BIT;
 		}
-		if(x < map_width && map[x+1, z]){
+		if(x + 1< map_width && map[x+1, z]){
 			bits |= RIGHT_BIT;
 		}
-debugging_tile += "2";
 			
-debugging_tile += " ";
 		
 
 
-debugging_tile += "    BITS: "+bits+"   ";
+debugging_tile += "MAGIC TILE BITS: "+bits+"   ";
 
 if((bits & TOP_LEFT_BIT) == TOP_LEFT_BIT){
 	debugging_tile += "TOP_LEFT_BIT ";
