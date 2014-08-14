@@ -22,20 +22,20 @@ public class TileMeshData {
 		string[] map_data = {
 			"XX.X.XX.XXX.....X", // NOTE if this corner is X then it causes bad things
 			"XX...............",
-			".................",
-			".................",
-			"...X.............",
+			".....XXX.........",
+			"....XX.X.........",
+			".X.XX.X..........",
 			".................",
 			"X..XX...........X",
-			"X.XXXX.X.X......X",
-			"X.XXXX..X.......X",
-			"...XX..X.X.......",
+			"X.XXXX.X.X..X...X",
+			"X.XXXX..X..XXX..X",
+			"...XX..X.X..X....",
 			"X...............X",
-			"X.X...XXXX.X.X..X",
-			"......X..X.XXX...",
-			"X..XX.X..X.X.X..X",
-			"...XX.XXXX.XXX...",
-			"XX...............",
+			"X.X...XXXX..X.X..X",
+			"......X..X.XXXXX..",
+			"X..XX.X..X..X.X..X",
+			"...XX.XXXX.XXXXX.",
+			"XX..........X.X..",
 			"XX.X.XX.XXX.....X"};
 
 		this.tiles_grass = new bool[this.tiles_x, this.tiles_z];
