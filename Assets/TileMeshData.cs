@@ -85,11 +85,19 @@ public class TileMeshData {
 	private void RenderTiles(MagicTileSet magic_tile_set){
 		this.tiles_rendered = new Tile[this.tiles_x, this.tiles_z];
 		Tile blank = new Tile(Color.red);
+		Tile zeroed = new Tile(Color.blue);
 
 		for(uint z=0; z < this.tiles_z; z++){
 			for(uint x=0; x < this.tiles_x; x++){
+				if(x == 0 && z == 0){
+					this.tiles_rendered[x,z] = zeroed;
+				}else
+				//if(x == 6 && z== 33){
+				//	this.tiles_rendered[x,z] = zeroed;
+				//}else
 				if(this.tiles_grass[x,z]){
-					this.tiles_rendered[x,z] = magic_tile_set.GetTile(this.tiles_grass, x, z);
+					bool debug_the_tile = (x==6&&z==33);
+					this.tiles_rendered[x,z] = magic_tile_set.GetTile(this.tiles_grass, x, z, debug_the_tile);
 				} else {
 					this.tiles_rendered[x,z] = blank;
 				}

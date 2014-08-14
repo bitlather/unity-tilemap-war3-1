@@ -36,65 +36,133 @@ public class MagicTileSet {
 		}
 	}
 
-	public Tile GetTile(bool[,] map, uint x, uint z){
+	public Tile GetTile(bool[,] map, uint x, uint z, bool debug_the_tile){
 		uint
 			bits = 0,
 			map_height = (uint)map.GetLength(1),
-			map_width = (uint)map.GetLength(0);
+			map_width = (uint)map.GetLength(0),
+			map_max_z = map_height - 1,
+			map_max_x = map_width - 1;
+
+string debugging_tile = "";
+
 
 		// This is left most tile
 		if(x == 0){
-			bits |= TOP_LEFT_BIT | LEFT_BIT | BOTTOM_LEFT_BIT;
+debugging_tile += "A";
+			bits |= LEFT_BIT;
+
+			if(z - 1 >= 0 && map[x,z-1]){
+				bits |= BOTTOM_LEFT_BIT;
+debugging_tile += "1";
+			}
+			if(z + 1< map_height && map[x,z+1]){
+				bits |= TOP_LEFT_BIT;
+debugging_tile += "2";
+			}
+debugging_tile += " ";
 		}
+		// This is bottom most tile
+		if(z == 0){
+			bits |= BOTTOM_BIT;
+
+			if(x-1 >= 0 && map[x-1,z]){
+				bits |= BOTTOM_LEFT_BIT;
+			}
+			if(x+1 < map_width && map[x+1, z]){
+				bits |= BOTTOM_RIGHT_BIT;
+			}
+debugging_tile += "D";
+		}
+
 		// This is top most tile
-		if(z == map_height){
+		if(z + 1 == map_height){
 			bits |= TOP_LEFT_BIT | TOP_BIT | TOP_RIGHT_BIT;
+debugging_tile += "B";
 		}
 		// This is right most tile
 		if(x == map_width){
 			bits |= TOP_RIGHT_BIT | RIGHT_BIT | BOTTOM_RIGHT_BIT;
-		}
-		// This is bottom most tile
-		if(z == 0){
-			bits |= TOP_LEFT_BIT | BOTTOM_BIT | BOTTOM_RIGHT_BIT;
+debugging_tile += "C";
 		}
 
 		// Handle top bits for every non top row of map
 		if(z+1 < map_height){
+debugging_tile += " E";
 			if(x >= 1 && map[x-1, z+1]){
 				bits |= TOP_LEFT_BIT;
+debugging_tile += "1";
 			}
 			if(map[x, z+1]){
 				bits |= TOP_BIT;
+debugging_tile += "2";
 			}
 			if(x+1 < map_width && map[x+1, z+1]){
 				bits |= TOP_RIGHT_BIT;
+debugging_tile += "3";
 			}
+debugging_tile += " ";
 		}
 
 		// Handle bottom bits for every non bottom row of map
 		if(z > 0){
+debugging_tile += " F";
 			if(x >= 1 && map[x-1, z-1]){
 				bits |= BOTTOM_LEFT_BIT;
+debugging_tile += "1";
 			}
 			if(map[x, z-1]){
 				bits |= BOTTOM_BIT;
+debugging_tile += "2";
 			}
 			if(x+1 < map_width && map[x+1, z-1]){
 				bits |= BOTTOM_RIGHT_BIT;
+debugging_tile += "3";
 			}
+debugging_tile += " ";
 		}
 
 		// Handle side bits
-		if(x > 0 && x < map_width){
-			if(map[x-1, z]){
-				bits |= LEFT_BIT;
-			}
-			if(map[x+1, z]){
-				bits |= RIGHT_BIT;
-			}
+		if(x > 0 && map[x-1, z]){
+			bits |= LEFT_BIT;
 		}
+		if(x < map_width && map[x+1, z]){
+			bits |= RIGHT_BIT;
+		}
+debugging_tile += "2";
+			
+debugging_tile += " ";
+		
 
+
+debugging_tile += "    BITS: "+bits+"   ";
+
+if((bits & TOP_LEFT_BIT) == TOP_LEFT_BIT){
+	debugging_tile += "TOP_LEFT_BIT ";
+}
+if((bits & TOP_BIT) == TOP_BIT){
+	debugging_tile += "TOP_BIT ";
+}
+if((bits & TOP_RIGHT_BIT) == TOP_RIGHT_BIT){
+	debugging_tile += "TOP_RIGHT_BIT ";
+}
+if((bits & LEFT_BIT) == LEFT_BIT){
+	debugging_tile += "LEFT_BIT ";
+}
+if((bits & RIGHT_BIT) == RIGHT_BIT){
+	debugging_tile += "RIGHT_BIT ";
+}
+if((bits & BOTTOM_LEFT_BIT) == BOTTOM_LEFT_BIT){
+	debugging_tile += "BOTTOM_LEFT_BIT ";
+}
+if((bits & BOTTOM_BIT) == BOTTOM_BIT){
+	debugging_tile += "BOTTOM_BIT ";
+}
+if((bits & BOTTOM_RIGHT_BIT) == BOTTOM_RIGHT_BIT){
+	debugging_tile += "BOTTOM_RIGHT_BIT ";
+}
+
+if(debug_the_tile){Debug.Log(debugging_tile);}
 
 
 
@@ -385,7 +453,7 @@ public class MagicTileSet {
 		}
 
 
-Debug.Log("UNACCOUNTED FOR: "+bits);
+//TODO UNCOMMENT FOR NOW; RESTORE LATER Debug.Log("UNACCOUNTED FOR: "+bits);
 
 		// Always return top left tile for now; eventually take 9 tiles and determine what to use
 		return this.tiles[0,3];
